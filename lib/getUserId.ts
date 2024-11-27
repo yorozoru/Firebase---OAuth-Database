@@ -1,7 +1,7 @@
 "use server"
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { readDB, writeDB } from './database_functions';
+import { setUserIdCookie } from './setUserIdCookie';
 
 export default async function getUserId(uId: string) {
     try {
@@ -9,17 +9,9 @@ export default async function getUserId(uId: string) {
         
         if (!userData) {
             await writeDB(uId);
-
         }
-        const cookieStore = cookies();
-        cookieStore.set({
-            name: 'userId',
-            value: uId,
-            httpOnly: true,
-            path: '/',
-        });
 
-
+        await setUserIdCookie(uId);
         console.log('User processed:', uId);
         redirect('/results');
     } catch (error) {
