@@ -10,7 +10,7 @@ export default async function getUserId(uId: string) {
         if (!userData) {
             await writeDB(uId);
 
-
+        }
         const cookieStore = cookies();
         cookieStore.set({
             name: 'userId',
@@ -18,7 +18,7 @@ export default async function getUserId(uId: string) {
             httpOnly: true,
             path: '/',
         });
-    }
+
 
         console.log('User processed:', uId);
         redirect('/results');

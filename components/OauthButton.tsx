@@ -7,7 +7,7 @@ import handleGoogleAuth from "@/lib/firebase_auth";
 export default async function OAuthButton(){
     return (
         <Button sx={{ display: 'flex', flexDirection: 'row', gap: 1, backgroundColor: '#FFC0CB' }}
-        onClick={() => {handleGoogleAuth()}}
+        onClick={handleGoogleAuth}
         >
                 <GoogleIcon sx={{color:'white'}}/> 
                 <h2 className="font-bold text-white">Login with Google</h2>
