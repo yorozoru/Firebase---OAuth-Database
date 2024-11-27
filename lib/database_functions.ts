@@ -3,7 +3,7 @@ import app from "./firebase_connect";
 
 const db = getDatabase(app);
 
-function readDB(id: string): Promise<string> {
+function readDB(id: string): Promise<string[]> {
     return new Promise((resolve, reject) => {
         const dbRef = ref(db, id);
         onValue(dbRef, (snapshot) => {
